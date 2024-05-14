@@ -1,9 +1,11 @@
+import 'package:fgc_app/data/game_profile.dart';
+import 'package:fgc_app/data/user.dart';
 import 'package:fgc_app/globals.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 
-import 'routin_page.dart';
+import 'routine_page.dart';
+
+User eseSoyYo = User('name', 'password', 'email');
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -17,6 +19,10 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHome extends StatelessWidget{
+
+  String name='';
+  String password='';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,10 +39,11 @@ class MyHome extends StatelessWidget{
                 height: 50,
                 child: Text('FGC'),
               ),
-              const SizedBox(
+              SizedBox(
                 width: 150,
                 height: 50,
                 child: TextField(
+                  onSubmitted: (value) => eseSoyYo.setName(value),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Usuario'
@@ -46,10 +53,11 @@ class MyHome extends StatelessWidget{
               const SizedBox(
                 height: 10,
               ),
-              const SizedBox(
+              SizedBox(
                 width: 150,
                 height: 50,
                 child: TextField(
+                  onSubmitted: (value) => eseSoyYo.setPassword(value),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Contraseña'
@@ -64,7 +72,9 @@ class MyHome extends StatelessWidget{
                 height: 50,
                 child: ElevatedButton(
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>RoutinPage()));
+                    /*eseSoyYo.setName(name);
+                    eseSoyYo.setPassword(password);*/
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>RoutinePage()));
                   },
                   child: const Text('Iniciar Sesion'),
                 ),
@@ -72,6 +82,7 @@ class MyHome extends StatelessWidget{
             ],
           ),
         ),
+        
       ),
     );
   }

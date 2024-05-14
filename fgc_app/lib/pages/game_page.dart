@@ -1,19 +1,19 @@
 import 'package:fgc_app/globals.dart';
 import 'package:fgc_app/pages/explorer_page.dart';
-import 'package:fgc_app/pages/game_page.dart';
 import 'package:fgc_app/pages/guides_page.dart';
 import 'package:fgc_app/pages/my_app.dart';
+import 'package:fgc_app/pages/profile_page.dart';
 import 'package:fgc_app/pages/routine_page.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatefulWidget{
-  const ProfilePage({Key? key}) : super(key: key);
+class GamePage extends StatefulWidget{
+  const GamePage({Key? key}) : super(key: key);
 
   @override
-  State<ProfilePage> createState() => _ProfilePage();
+  State<GamePage> createState() => _GamePage();
 }
 
-class _ProfilePage extends State<ProfilePage> {
+class _GamePage extends State<GamePage> {
   
   String dropdownValue = 'one';
   int Menu = 1;
@@ -38,7 +38,6 @@ class _ProfilePage extends State<ProfilePage> {
             child: Icon(Icons.supervised_user_circle_rounded,size: 60,)),
             SizedBox(width: 50,),
             Column(
-
               children: <Widget>[
                 SizedBox(height: 10,),
                 Text(eseSoyYo.getGameProfile().getName()),
@@ -78,45 +77,24 @@ class _ProfilePage extends State<ProfilePage> {
           )
         ],
       ),
-      body: Center(
+      body: const Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 20),
-            const Row(
-              children: <Widget>[
-                SizedBox(width: 20),
-                SizedBox(width: 200,
-                child: Text('Profile',style: const TextStyle(fontSize: 26))),
-              ],
-            ),
-            SizedBox(height: 5),
-            Row(
-              children: <Widget>[
-                SizedBox(width: 20),
-                SizedBox(width: 200,
-                child: Text('Hentexsh',style: const TextStyle(fontSize: 20))),
-              ],
-            ),
-            SizedBox(height: 20),
-            Row(
-              children: <Widget>[
-                SizedBox(width: 20),
-                SizedBox(width: 200,
-                child: Text('Game profiles',style: const TextStyle(fontSize: 26))),
-                ElevatedButton(onPressed: (){}, child: Icon(Icons.add))
-              ],
-            ),
-            SizedBox(height: 5),
-            Row(
-              children: <Widget>[
-                SizedBox(width: 20),
-                SizedBox(width: 200,
-                child: Text('hentexsh2002',style: const TextStyle(fontSize: 20))),
-              ],
-            ),
-          ]
-        ),
+            Image(width: 500,height: 250,image: AssetImage(GameIcon_01)),
+            Card(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(width: 350,height: 200,
+                    child: Text("Title: Guilty Gear Strive\n\nDescription: Guilty Gear -Strive- is the latest entry in the Guilty Gear franchise, featuring new and redesigned mechanics\n\nGenre: 2D fighting game",style: TextStyle(fontSize: 16)),
+                  ),
+                ],
+              ),
+            )
+            
+          ],
+        )
       ),
       persistentFooterButtons: [
         Row(
