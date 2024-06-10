@@ -22,19 +22,20 @@ class _ExplorerPage extends State<ExplorerPage> {
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.grey[800],
+        toolbarHeight: 80,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SizedBox(width: 10,),
-            SizedBox(width: 20,height: 80,
-            child: Icon(Icons.supervised_user_circle_rounded,size: 60,)),
-            SizedBox(width: 50,),
+            SizedBox(width: 70,height: 80,
+            child: Image(image: AssetImage(ProfileIcon),width: 100, height: 100,)),
+            SizedBox(width: 20,),
             Column(
               children: <Widget>[
                 SizedBox(height: 10,),
-                Text(eseSoyYo.getGameProfile().getName()),
-                Text(eseSoyYo.getGameProfile().getRank()),
+                Text(eseSoyYo.getGameProfile().getName(), style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white),),
+                Text(eseSoyYo.getGameProfile().getRank(), style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white),),
                 SizedBox(height: 10,),
               ],
             ),
@@ -44,11 +45,12 @@ class _ExplorerPage extends State<ExplorerPage> {
         actions: [
           DropdownButton<String>(
             value: dropDownValue,
-            focusColor: Colors.white,
+            focusColor: Colors.grey[800],
+            iconEnabledColor: Colors.white,
             items: const [
               DropdownMenuItem<String>(value: 'one',
               child: Image(height: 100,width: 150,
-                image: AssetImage(GameIcon_01),
+                image: AssetImage(GameIcon_01_1),
                 ),
               ),
               DropdownMenuItem<String>(value: 'two',
@@ -70,22 +72,32 @@ class _ExplorerPage extends State<ExplorerPage> {
           )
         ],
       ),
-      body: Center(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(GG_Background_02),
+            fit: BoxFit.cover),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Row(
               children: <Widget>[
-                ElevatedButton(onPressed: (){}, child: const Image(width: 25,height: 25,image: AssetImage(tabIcon_02))),
+                ElevatedButton(
+                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[850])),
+                  onPressed: (){}, 
+                  child: Image(width: 25,height: 25,image: AssetImage(tabIcon_02),color: Colors.grey[350],)),
                 Expanded(
                   child: Card(
                     margin: EdgeInsets.all(10),
-                    color: Colors.grey,
+                    color: Colors.grey[850],
                     child: SizedBox(height: 50,
                       child: TextField(
+                        style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           border: UnderlineInputBorder(),
-                          hintText: 'Search routine, guides, games or friends'
+                          hintText: ' Search routine, guides, games or friends',
+                          hintStyle: TextStyle(color: Colors.grey)
                         ),
                       )
                       ),

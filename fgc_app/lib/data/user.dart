@@ -4,7 +4,7 @@ class User{
   late String name;
   late String password;
   late String email;
-  late GameProfile gameProfile = GameProfile(name, true, 150, 'Celestial');
+  late GameProfile gameProfile = GameProfile(name, true, 150, 'Floor 7');
 
   User(this.name, this.password, this.email);
   

@@ -29,19 +29,20 @@ class _GamePage extends State<GamePage> {
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.grey[800],
+        toolbarHeight: 80,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SizedBox(width: 10,),
-            SizedBox(width: 20,height: 80,
-            child: Icon(Icons.supervised_user_circle_rounded,size: 60,)),
-            SizedBox(width: 50,),
+            SizedBox(width: 70,height: 80,
+            child: Image(image: AssetImage(ProfileIcon),width: 100, height: 100,)),
+            SizedBox(width: 20,),
             Column(
               children: <Widget>[
                 SizedBox(height: 10,),
-                Text(eseSoyYo.getGameProfile().getName()),
-                Text(eseSoyYo.getGameProfile().getRank()),
+                Text(eseSoyYo.getGameProfile().getName(), style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white),),
+                Text(eseSoyYo.getGameProfile().getRank(), style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white),),
                 SizedBox(height: 10,),
               ],
             ),
@@ -51,11 +52,12 @@ class _GamePage extends State<GamePage> {
         actions: [
           DropdownButton<String>(
             value: dropdownValue,
-            focusColor: Colors.white,
+            focusColor: Colors.grey[800],
+            iconEnabledColor: Colors.white,
             items: const [
               DropdownMenuItem<String>(value: 'one',
               child: Image(height: 100,width: 150,
-                image: AssetImage(GameIcon_01),
+                image: AssetImage(GameIcon_01_1),
                 ),
               ),
               DropdownMenuItem<String>(value: 'two',
@@ -77,22 +79,19 @@ class _GamePage extends State<GamePage> {
           )
         ],
       ),
-      body: const Center(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(GG_Background_01),
+            fit: BoxFit.cover),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image(width: 500,height: 250,image: AssetImage(GameIcon_01)),
-            Card(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(width: 350,height: 200,
-                    child: Text("Title: Guilty Gear Strive\n\nDescription: Guilty Gear -Strive- is the latest entry in the Guilty Gear franchise, featuring new and redesigned mechanics\n\nGenre: 2D fighting game",style: TextStyle(fontSize: 16)),
-                  ),
-                ],
-              ),
+            SizedBox(width: 350,height: 200,
+              child: Text("Guilty Gear Strive is the latest entry in the Guilty Gear franchise, featuring new and redesigned mechanics\n\nGenre: 2D fighting game, arcade, multiplayer",style: TextStyle(fontSize: 20, fontFamily: 'GuiltyGear', color: Colors.white))
             )
-            
           ],
         )
       ),

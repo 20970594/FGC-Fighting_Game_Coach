@@ -34,4 +34,9 @@ flutter:
   assets:
     - 'assets/images/'
 
+  fonts:
+    - family: GuiltyGear
+      fonts:
+        - asset: fonts/Impact_Strive.otf
+
   uses-material-design: true

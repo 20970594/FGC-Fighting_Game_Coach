@@ -29,20 +29,21 @@ class _ProfilePage extends State<ProfilePage> {
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.grey[800],
+        toolbarHeight: 80,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SizedBox(width: 10,),
-            SizedBox(width: 20,height: 80,
-            child: Icon(Icons.supervised_user_circle_rounded,size: 60,)),
-            SizedBox(width: 50,),
+            SizedBox(width: 70,height: 80,
+            child: Image(image: AssetImage(ProfileIcon),width: 100, height: 100,)),
+            SizedBox(width: 20,),
             Column(
 
               children: <Widget>[
                 SizedBox(height: 10,),
-                Text(eseSoyYo.getGameProfile().getName()),
-                Text(eseSoyYo.getGameProfile().getRank()),
+                Text(eseSoyYo.getGameProfile().getName(), style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white),),
+                Text(eseSoyYo.getGameProfile().getRank(), style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white),),
                 SizedBox(height: 10,),
               ],
             ),
@@ -52,11 +53,12 @@ class _ProfilePage extends State<ProfilePage> {
         actions: [
           DropdownButton<String>(
             value: dropdownValue,
-            focusColor: Colors.white,
+            focusColor: Colors.grey[800],
+            iconEnabledColor: Colors.white,
             items: const [
               DropdownMenuItem<String>(value: 'one',
               child: Image(height: 100,width: 150,
-                image: AssetImage(GameIcon_01),
+                image: AssetImage(GameIcon_01_1),
                 ),
               ),
               DropdownMenuItem<String>(value: 'two',
@@ -78,16 +80,28 @@ class _ProfilePage extends State<ProfilePage> {
           )
         ],
       ),
-      body: Center(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(GG_Background_02),
+            fit: BoxFit.cover),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 20),
-            const Row(
+            Row(
               children: <Widget>[
                 SizedBox(width: 20),
-                SizedBox(width: 200,
-                child: Text('Profile',style: const TextStyle(fontSize: 26))),
+                SizedBox(width: 100,
+                child: Text('Profile',style: const TextStyle(fontFamily: 'GuiltyGear',color: Colors.white, fontSize: 26))),
+                SizedBox(width: 80, height: 30,
+                  child: ElevatedButton(
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[850])),
+                    onPressed: () {},
+                    child: Text('Edit',style: const TextStyle(fontFamily: 'GuiltyGear',color: Colors.white, fontSize: 16))
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 5),
@@ -95,7 +109,7 @@ class _ProfilePage extends State<ProfilePage> {
               children: <Widget>[
                 SizedBox(width: 20),
                 SizedBox(width: 200,
-                child: Text('Hentexsh',style: const TextStyle(fontSize: 20))),
+                child: Text('Name: Hentexsh\nState: Active',style: const TextStyle(fontFamily: 'GuiltyGear',color: Colors.white, fontSize: 20))),
               ],
             ),
             SizedBox(height: 20),
@@ -103,16 +117,44 @@ class _ProfilePage extends State<ProfilePage> {
               children: <Widget>[
                 SizedBox(width: 20),
                 SizedBox(width: 200,
-                child: Text('Game profiles',style: const TextStyle(fontSize: 26))),
+                child: Text('Game profiles',style: const TextStyle(fontFamily: 'GuiltyGear',color: Colors.white, fontSize: 26))),
                 ElevatedButton(onPressed: (){}, child: Icon(Icons.add))
               ],
             ),
             SizedBox(height: 5),
             Row(
               children: <Widget>[
-                SizedBox(width: 20),
-                SizedBox(width: 200,
-                child: Text('hentexsh2002',style: const TextStyle(fontSize: 20))),
+                SizedBox(width: 20,),
+                SizedBox(width: 250, height: 100,
+                  child: ElevatedButton(
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[850])),
+                    onPressed: (){},
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(width: 200,
+                        child: Text('Name: hentexsh2002\nRank: Floor 7',style: const TextStyle(fontFamily: 'GuiltyGear',color: Colors.white, fontSize: 20))),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 5),
+            Row(
+              children: <Widget>[
+                SizedBox(width: 20,),
+                SizedBox(width: 250, height: 100,
+                  child: ElevatedButton(
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[850])),
+                    onPressed: (){},
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(width: 200,
+                        child: Text('Name: aaasta\nRank: Floor 10',style: const TextStyle(fontFamily: 'GuiltyGear',color: Colors.white, fontSize: 20))),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ]

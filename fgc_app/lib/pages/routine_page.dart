@@ -89,19 +89,20 @@ class _RoutinePage extends State<RoutinePage>
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.grey[800],
+        toolbarHeight: 80,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SizedBox(width: 10,),
-            SizedBox(width: 20,height: 80,
-            child: Icon(Icons.supervised_user_circle_rounded,size: 60,)),
-            SizedBox(width: 50,),
+            SizedBox(width: 70,height: 80,
+            child: Image(image: AssetImage(ProfileIcon),width: 100, height: 100,)),
+            SizedBox(width: 20,),
             Column(
               children: <Widget>[
                 SizedBox(height: 10,),
-                Text(eseSoyYo.getGameProfile().getName()),
-                Text(eseSoyYo.getGameProfile().getRank()),
+                Text(eseSoyYo.getGameProfile().getName(), style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white),),
+                Text(eseSoyYo.getGameProfile().getRank(), style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white),),
                 SizedBox(height: 10,),
               ],
             ),
@@ -109,248 +110,267 @@ class _RoutinePage extends State<RoutinePage>
         ),
         automaticallyImplyLeading: false,
         actions: [
-          DropdownButton<String>(
-            value: dropdownValue,
-            focusColor: Colors.white,
-            items: const [
-              DropdownMenuItem<String>(value: 'one',
-              child: Image(height: 100,width: 150,
-                image: AssetImage(GameIcon_01),
+            DropdownButton<String>(
+              iconEnabledColor: Colors.white,
+              isExpanded: false,
+              value: dropdownValue,
+              focusColor: Colors.grey[500],
+              items: const [
+                DropdownMenuItem<String>(value: 'one',
+                child: Image(height: 50,width: 150,
+                  image: AssetImage(GameIcon_01_1),
+                  ),
                 ),
-              ),
-              DropdownMenuItem<String>(value: 'two',
-              child: Image(height: 100,width: 150,
-                image: AssetImage(GameIcon_02),
+                DropdownMenuItem<String>(value: 'two',
+                child: Image(height: 100,width: 150,
+                  image: AssetImage(GameIcon_02),
+                  ),
                 ),
-              ),
-              DropdownMenuItem<String>(value: 'three',
-              child: Image(height: 100,width: 150,
-                image: AssetImage(GameIcon_03),
-                ),
-              )
-            ],
-            onChanged: (String? newValue){
-              setState((){
-                dropdownValue = newValue!;
-              });
-            }
-          )
+                DropdownMenuItem<String>(value: 'three',
+                child: Image(height: 100,width: 150,
+                  image: AssetImage(GameIcon_03),
+                  ),
+                )
+              ],
+              onChanged: (String? newValue){
+                setState((){
+                  dropdownValue = newValue!;
+                });
+              }
+            )
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 10),
-          Card(margin: EdgeInsets.all(10), color: Colors.grey,
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 10,),
-                Row(
-                  children: <Widget>[
-                    SizedBox(width: 10,),
-                    SizedBox(height: 30, width: 250,
-                      child: TextField(
-                        onSubmitted:(value) => routineTemplate.setName(value),
-                        decoration: InputDecoration(
-                          border: UnderlineInputBorder(),
-                          hintText: 'Routine name'
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(GG_Background_02),
+            fit: BoxFit.cover),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 10),
+            Card(margin: EdgeInsets.all(10), color: Colors.grey[850],
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 10,),
+                  Row(
+                    children: <Widget>[
+                      SizedBox(width: 10,),
+                      SizedBox(height: 30, width: 250,
+                        child: TextField(
+                          style: TextStyle(color: Colors.white),
+                          onSubmitted:(value) => routineTemplate.setName(value),
+                          decoration: InputDecoration(
+                            border: UnderlineInputBorder(),
+                            hintText: 'Routine name',
+                            hintStyle: TextStyle(color: Colors.grey)
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    SizedBox(width: 10,),
-                    SizedBox(height: 30,width: 400,
-                      child: TextField(
-                        onSubmitted:(value) => routineTemplate.setDescription(value),
-                        decoration: InputDecoration(
-                          border: UnderlineInputBorder(),
-                          hintText: 'Description'
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    const SizedBox(width: 10,),
-                    DropdownButton<String>(
-                      value: dropdownCharValue,
-                      hint: const Text('Your character'),
-                      items: const [
-                        DropdownMenuItem<String>(
-                          value: 'one',
-                          child: Image(height: 40,width: 40,
-                            image: AssetImage(charIcon_01),
-                            ),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: 'two',
-                          child: Image(height: 40,width: 40,
-                            image: AssetImage(charIcon_02),
-                            ),
-                        )
-                      ],
-                      onChanged: (String? newValue){
-                        setState((){
-                          dropdownCharValue = newValue!;
-                          if(dropdownActionValue=='one'){routineTemplate.setCharPick(charIcon_01);}
-                          else if(dropdownActionValue=='two'){routineTemplate.setCharPick(charIcon_02);}
-                          else{routineTemplate.setCharPick(charIcon_01);}
-                        });
-                      }
-                    ),
-                    const SizedBox(width: 10,),
-                    SizedBox(height: 30,width: 100,
-                      child: TextField(
-                        onSubmitted:(value) => routineTemplate.setYourInput(value),
-                        decoration: InputDecoration(
-                          border: UnderlineInputBorder(),
-                          hintText: 'Your action'
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10,),
-                    DropdownButton<String>(
-                      value: dropdownAgainstValue,
-                      hint: const Text('Against'),
-                      items: const [
-                        DropdownMenuItem<String>(
-                          value: 'one',
-                          child: Image(height: 40,width: 40,
-                            image: AssetImage(charIcon_01),
-                            ),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: 'two',
-                          child: Image(height: 40,width: 40,
-                            image: AssetImage(charIcon_02),
-                            ),
-                        ),
-                      ],
-                      onChanged: (String? newValue){
-                        setState((){
-                          dropdownAgainstValue = newValue!;
-                          if(dropdownAgainstValue=='one'){routineTemplate.setEnemPick(charIcon_01);}
-                          else if(dropdownAgainstValue=='two'){routineTemplate.setEnemPick(charIcon_02);}
-                          else{routineTemplate.setEnemPick(charIcon_02);}
-                        });
-                      }
-                    ),
-                    const SizedBox(width: 10,),
-                    SizedBox(
-                      height: 30,
-                      width: 110,
-                      child: TextField(
-                        onSubmitted:(value) => routineTemplate.setEnemyInput(value),
-                        decoration: InputDecoration(
-                          border: UnderlineInputBorder(),
-                          hintText: 'Enemy action'
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    SizedBox(width: 10,),
-                    SizedBox(height: 30,width: 100,
-                      child: TextField(
-                        onSubmitted:(value) => routineTemplate.setObjective(double.parse(value)),
-                        decoration: InputDecoration(
-                          border: UnderlineInputBorder(),
-                          hintText: 'Repetitions'
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10,)
-              ]
-            )
-          ),
-          IconButton(
-            onPressed: _addItem,
-            icon: const Icon(Icons.add)
-          ),
-          Expanded(
-            child: AnimatedList(
-              key: _key,
-              initialItemCount: 0,
-              padding: const EdgeInsets.all(10),
-              itemBuilder: (context, index, animation) {
-                return SizeTransition(
-                  key: UniqueKey(),
-                  sizeFactor: animation,
-                  child: Card(
-                    margin: EdgeInsets.all(10),
-                    color: Colors.grey,
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            const SizedBox(width: 10,),
-                            Text(routineTemplate.getName(), style: const TextStyle(fontSize: 24)),
-                            const SizedBox(width: 10,),
-                            Text(eseSoyYo.getName(), style: const TextStyle(fontSize: 12)),
-                            IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: (){
-                              _removeItem(index);
-                            },
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            const SizedBox(width: 10,),
-                            Text(routineTemplate.getDescription(), style: const TextStyle(fontSize: 16)),
-                          ]
-                        ),
-                        Row(
-                          children: <Widget>[
-                            const SizedBox(width: 10,),
-                            Text('Execute'),
-                            const SizedBox(width: 10,),
-                            SizedBox(width: 40,height: 40,
-                              child: Image(image: AssetImage(routineTemplate.getCharPick())),
-                            ),
-                            const SizedBox(width: 10,),
-                            SizedBox(width: 100,height: 40,
-                              child: Text(routineTemplate.getYourInput(),style: const TextStyle(fontSize: 16)),
-                            ),
-                            const SizedBox(width: 10,),
-                            Text('Against'),
-                            const SizedBox(width: 10,),
-                            SizedBox(width: 40,height: 40,
-                              child: Image(image: AssetImage(routineTemplate.getEnemPick())),
-                            ),
-                            const SizedBox(width: 10,),
-                            SizedBox(width: 100,height: 40,
-                              child: Text(routineTemplate.getEnemyInput(),style: const TextStyle(fontSize: 16)),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            const Text('Progress: '),
-                            SizedBox(height: 10,width: 100,
-                              child: LinearProgressIndicator(value: controller.value,),
-                            ),
-                            SizedBox(width: 10),
-                            Text('${routineTemplate.getProgress()}/${routineTemplate.getObjective()}')
-                          ],
-                        )
-                      ]
-                    )
+                      )
+                    ],
                   ),
-                );
-              },
+                  Row(
+                    children: <Widget>[
+                      SizedBox(width: 10,),
+                      SizedBox(height: 30,width: 400,
+                        child: TextField(
+                          style: TextStyle(color: Colors.white),
+                          onSubmitted:(value) => routineTemplate.setDescription(value),
+                          decoration: InputDecoration(
+                            border: UnderlineInputBorder(),
+                            hintText: 'Description',
+                            hintStyle: TextStyle(color: Colors.grey)
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      const SizedBox(width: 10,),
+                      DropdownButton<String>(
+                        value: dropdownCharValue,
+                        hint: const Text('Your character', style: TextStyle(color: Colors.grey),),
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: 'one',
+                            child: Image(height: 40,width: 40,
+                              image: AssetImage(charIcon_01),
+                              ),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'two',
+                            child: Image(height: 40,width: 40,
+                              image: AssetImage(charIcon_02),
+                              ),
+                          )
+                        ],
+                        onChanged: (String? newValue){
+                          setState((){
+                            dropdownCharValue = newValue!;
+                            if(dropdownActionValue=='one'){routineTemplate.setCharPick(charIcon_01);}
+                            else if(dropdownActionValue=='two'){routineTemplate.setCharPick(charIcon_02);}
+                            else{routineTemplate.setCharPick(charIcon_01);}
+                          });
+                        }
+                      ),
+                      const SizedBox(width: 10,),
+                      SizedBox(height: 30,width: 100,
+                        child: TextField(
+                          style: TextStyle(color: Colors.white),
+                          onSubmitted:(value) => routineTemplate.setYourInput(value),
+                          decoration: InputDecoration(
+                            border: UnderlineInputBorder(),
+                            hintText: 'Your action',
+                            hintStyle: TextStyle(color: Colors.grey)
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10,),
+                      DropdownButton<String>(
+                        value: dropdownAgainstValue,
+                        hint: const Text('Against',style: TextStyle(color: Colors.grey)),
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: 'one',
+                            child: Image(height: 40,width: 40,
+                              image: AssetImage(charIcon_01),
+                              ),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'two',
+                            child: Image(height: 40,width: 40,
+                              image: AssetImage(charIcon_02),
+                              ),
+                          ),
+                        ],
+                        onChanged: (String? newValue){
+                          setState((){
+                            dropdownAgainstValue = newValue!;
+                            if(dropdownAgainstValue=='one'){routineTemplate.setEnemPick(charIcon_01);}
+                            else if(dropdownAgainstValue=='two'){routineTemplate.setEnemPick(charIcon_02);}
+                            else{routineTemplate.setEnemPick(charIcon_02);}
+                          });
+                        }
+                      ),
+                      const SizedBox(width: 10,),
+                      SizedBox(
+                        height: 30,
+                        width: 110,
+                        child: TextField(
+                          style: TextStyle(color: Colors.white),
+                          onSubmitted:(value) => routineTemplate.setEnemyInput(value),
+                          decoration: InputDecoration(
+                            border: UnderlineInputBorder(),
+                            hintText: 'Enemy action',
+                            hintStyle: TextStyle(color: Colors.grey)
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      SizedBox(width: 10,),
+                      SizedBox(height: 30,width: 100,
+                        child: TextField(
+                          style: TextStyle(color: Colors.white),
+                          onSubmitted:(value) => routineTemplate.setObjective(double.parse(value)),
+                          decoration: InputDecoration(
+                            border: UnderlineInputBorder(),
+                            hintText: 'Repetitions',
+                            hintStyle: TextStyle(color: Colors.grey)
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10,)
+                ]
+              )
             ),
-          )
-        ],
+            IconButton(
+              onPressed: _addItem,
+              icon: const Icon(Icons.add, color: Colors.white,)
+            ),
+            Expanded(
+              child: AnimatedList(
+                key: _key,
+                initialItemCount: 0,
+                padding: const EdgeInsets.all(10),
+                itemBuilder: (context, index, animation) {
+                  return SizeTransition(
+                    key: UniqueKey(),
+                    sizeFactor: animation,
+                    child: Card(
+                      margin: EdgeInsets.all(10),
+                      color: Colors.grey,
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              const SizedBox(width: 10,),
+                              Text(routineTemplate.getName(), style: const TextStyle(fontSize: 24)),
+                              const SizedBox(width: 10,),
+                              Text(eseSoyYo.getName(), style: const TextStyle(fontSize: 12)),
+                              IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: (){
+                                _removeItem(index);
+                              },
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              const SizedBox(width: 10,),
+                              Text(routineTemplate.getDescription(), style: const TextStyle(fontSize: 16)),
+                            ]
+                          ),
+                          Row(
+                            children: <Widget>[
+                              const SizedBox(width: 10,),
+                              Text('Execute'),
+                              const SizedBox(width: 10,),
+                              SizedBox(width: 40,height: 40,
+                                child: Image(image: AssetImage(routineTemplate.getCharPick())),
+                              ),
+                              const SizedBox(width: 10,),
+                              SizedBox(width: 100,height: 40,
+                                child: Text(routineTemplate.getYourInput(),style: const TextStyle(fontSize: 16)),
+                              ),
+                              const SizedBox(width: 10,),
+                              Text('Against'),
+                              const SizedBox(width: 10,),
+                              SizedBox(width: 40,height: 40,
+                                child: Image(image: AssetImage(routineTemplate.getEnemPick())),
+                              ),
+                              const SizedBox(width: 10,),
+                              SizedBox(width: 100,height: 40,
+                                child: Text(routineTemplate.getEnemyInput(),style: const TextStyle(fontSize: 16)),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              const Text('Progress: '),
+                              SizedBox(height: 10,width: 100,
+                                child: LinearProgressIndicator(value: controller.value,),
+                              ),
+                              SizedBox(width: 10),
+                              Text('${routineTemplate.getProgress()}/${routineTemplate.getObjective()}')
+                            ],
+                          )
+                        ]
+                      )
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       ),
       persistentFooterButtons: [
         Row(
