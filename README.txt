@@ -2,6 +2,10 @@ Nombre de la app: FGC Fighting Game Coach
 Descripción: FGC es una aplicación de teléfono para gamers aficionados a videojuegos de pelea
  que les permite mejorar sus habilidades y ver su progreso a través de rutinas y objetivos.
 
+Link al repositorio: https://github.com/20970594/FGC-Fighting_Game_Coach
+
+Link al video en Youtube: https://youtu.be/MVvnht6-HBU
+
 •	Requerimientos funcionales:
 o	El sistema debe permitir al usuario cambiar de videojuego.
 o	El sistema debe permitir al usuario crear, editar, compartir, visualizar, comentar y puntuar guías de estrategias.
