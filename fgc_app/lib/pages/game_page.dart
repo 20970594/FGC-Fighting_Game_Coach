@@ -1,9 +1,7 @@
 import 'package:fgc_app/globals.dart';
-import 'package:fgc_app/pages/explorer_page.dart';
-import 'package:fgc_app/pages/guides_page.dart';
-import 'package:fgc_app/pages/my_app.dart';
-import 'package:fgc_app/pages/profile_page.dart';
 import 'package:fgc_app/pages/routine_page.dart';
+import 'package:fgc_app/pages/my_app.dart';
+import 'package:fgc_app/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class GamePage extends StatefulWidget{
@@ -34,99 +32,99 @@ class _GamePage extends State<GamePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            DrawerButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white))),
             SizedBox(width: 10,),
-            SizedBox(width: 70,height: 80,
-            child: Image(image: AssetImage(ProfileIcon),width: 100, height: 100,)),
+            Text('Inicio',
+              style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white, fontSize: 30), textAlign: TextAlign.center,),
             SizedBox(width: 20,),
-            Column(
-              children: <Widget>[
-                SizedBox(height: 10,),
-                Text(eseSoyYo.getGameProfile().getName(), style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white),),
-                Text(eseSoyYo.getGameProfile().getRank(), style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white),),
-                SizedBox(height: 10,),
-              ],
-            ),
           ],
         ),
         automaticallyImplyLeading: false,
-        actions: [
-          DropdownButton<String>(
-            value: dropdownValue,
-            focusColor: Colors.grey[800],
-            iconEnabledColor: Colors.white,
-            items: const [
-              DropdownMenuItem<String>(value: 'one',
-              child: Image(height: 100,width: 150,
-                image: AssetImage(GameIcon_01_1),
-                ),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.grey[850],
+        child:ListView(
+          children: [
+            GestureDetector(
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>const GamePage()));},
+              child: DrawerHeader(
+                decoration: BoxDecoration(image: DecorationImage(image: AssetImage(GameIcon_01_2),fit: BoxFit.cover)),
+                child: Text("Juegos",style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.black, fontSize: 30), textAlign: TextAlign.start,),
               ),
-              DropdownMenuItem<String>(value: 'two',
-              child: Image(height: 100,width: 150,
-                image: AssetImage(GameIcon_02),
-                ),
-              ),
-              DropdownMenuItem<String>(value: 'three',
-              child: Image(height: 100,width: 150,
-                image: AssetImage(GameIcon_03),
-                ),
-              )
-            ],
-            onChanged: (String? newValue){
-              setState((){
-                dropdownValue = newValue!;
-              });
-            }
-          )
-        ],
+            ),
+            ListTile(
+              title: Text("Inicio",style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white, fontSize: 30)),
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));},
+            ),
+            ListTile(
+              title: Text("Rutinas",style: TextStyle(fontFamily: 'GuiltyGear',color: Colors.white, fontSize: 30)),
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>const RoutinePage()));},
+            ),
+          ],
+        )
       ),
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(GG_Background_01),
-            fit: BoxFit.cover),
+          color: Colors.grey[850],
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Image(width: 500,height: 250,image: AssetImage(GameIcon_01)),
-            SizedBox(width: 350,height: 200,
-              child: Text("Guilty Gear Strive is the latest entry in the Guilty Gear franchise, featuring new and redesigned mechanics\n\nGenre: 2D fighting game, arcade, multiplayer",style: TextStyle(fontSize: 20, fontFamily: 'GuiltyGear', color: Colors.white))
-            )
+            SizedBox(height: 20,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(width: 20,),
+                GestureDetector(
+                  onTap: (){
+                    showDialog(
+                      context: context,
+                      builder: (context) => SimpleDialog(
+                        contentPadding: EdgeInsets.all(10),
+                        backgroundColor: Colors.grey[850],
+                        children: <Widget>[
+                          Column(mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Año de salida: 2020\nJuego de lucha en 2D, Anime, Arcade, Multijugador\nDescripción: «GUILTY GEAR -STRIVE-» es el último título de la aclamada franquicia de juegos de lucha de Guilty Gear. Creado por Daisuke Ishiwatari y desarrollado por Arc System Works, «GUILTY GEAR -STRIVE-» mantiene la reputación de la serie gracias a sus revolucionarios gráficos híbridos 2D/3D con sombreado de celdas y su intensa y atractiva jugabilidad.\nPágina web: https://es.bandainamcoent.eu/guilty-gear/guilty-gear-strive\nPuntuación: 85',
+                              style: TextStyle(color: Colors.white, fontSize: 18),textAlign: TextAlign.start),
+                            ElevatedButton(onPressed: (){}, child: Text("Activar",style: TextStyle(color: Colors.black, fontSize: 20),textAlign: TextAlign.start))
+                          ],
+                          )
+                        ]
+                      ),
+                    );
+                  },
+                  child:Image(image: AssetImage(GameIcon_01_2),width: 180, height: 180,)
+                ),
+                SizedBox(width: 20,),
+                GestureDetector(
+                  onTap: (){},
+                  child:SizedBox(width: 180, height: 180,
+                    child: Image(image: AssetImage(GameIcon_02),width: 180, height: 180,)),
+                )
+              ]
+            ),
+            SizedBox(height: 20,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(width: 20,),
+                GestureDetector(
+                  onTap: (){},
+                  child:SizedBox(width: 180, height: 180,
+                    child: Image(image: AssetImage(GameIcon_03),width: 180, height: 180,)),
+                ),
+                SizedBox(width: 40,),
+                GestureDetector(
+                  onTap: (){},
+                  child:SizedBox(width: 150, height: 150,
+                    child: Image(image: AssetImage(GameIcon_04),width: 150, height: 150,)),
+                )
+              ]
+            ),
           ],
         )
       ),
-      persistentFooterButtons: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const GamePage()));
-                }, 
-              child: const Image(width: 25,height: 25,image: AssetImage(tabIcon_01))),
-            ElevatedButton(
-            onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ExplorerPage()));
-              }, 
-            child: const Image(width: 25,height: 25,image: AssetImage(tabIcon_02))),
-            ElevatedButton(
-            onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const RoutinePage()));
-              }, 
-            child: const Image(width: 25,height: 25,image: AssetImage(tabIcon_03))),
-            ElevatedButton(
-            onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const GuidesPage()));
-              }, 
-            child: const Image(width: 25,height: 25,image: AssetImage(tabIcon_04))),
-            ElevatedButton(
-            onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ProfilePage()));
-              }, 
-            child: const Icon(Icons.supervised_user_circle_rounded,size: 25,)),
-          ],
-        )
-      ],
     );
   }
 }

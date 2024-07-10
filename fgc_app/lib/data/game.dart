@@ -1,13 +1,55 @@
 class Game{
-  String name;
-  String urlLogo;
-  String urlAccess;
-  String description;
-  String genre;
+  final int? id;
+  final String name;
+  final int year;
+  final String genre;
+  final String description;
+  final String urlAccess;
+  final int punctuation;
+  //final String urlLogo;
 
-  Game(this.name, this.urlLogo, this.urlAccess, this.description, this.genre);
+const Game({
+    this.id,
+    required this.name,
+    required this.year,
+    required this.genre,
+    required this.description,
+    required this.urlAccess,
+    required this.punctuation,
+  });
 
-  String getName(){return name;}
+  Map<String, Object?> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'year': year,
+      'gender': genre,
+      'description': description,
+      'urlAccess': urlAccess,
+      'punctuation': punctuation,
+    };
+  }
+
+  static Game fromMap(Map<String, dynamic> map) {
+    return Game(
+      id: map['id'] as int, // Cast to int for type safety
+      name: map['name'] as String, // Cast to String for type safety
+      year: map['year'] as int, 
+      genre: map['gender'] as String, 
+      description: map['description'] as String,
+      urlAccess: map['urlAccess'] as String,
+      punctuation: map['punctuation'] as int,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'Game{id: $id, name: $name, year: $year, genre: $genre, description: $description, urlAccess: $urlAccess, punctuation: $punctuation}';
+  }
+
+  //Game(this.name, this.urlLogo, this.urlAccess, this.description, this.genre);
+
+  /*String getName(){return name;}
   void setName(String value){name=value;}
 
   String getUrlLogo(){return urlLogo;}
@@ -20,5 +62,5 @@ class Game{
   void setDescription(String value){description=value;}
 
   String getGenre(){return genre;}
-  void setGenre(String value){genre=value;}
+  void setGenre(String value){genre=value;}*/
 }
