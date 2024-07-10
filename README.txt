@@ -4,7 +4,7 @@ especialmente para aquellos que se toman la competitividad de forma mas seria y 
 mejorar de forma significativa. Esta aplicación permite al usuario mejorar a traves de un seguimiento
 de rutinas para distintos juegos, cada uno con distintos niveles de dificultad.
 
-Link al repositorio: https://github.com/20970594/FGC-Fighting_Game_Coach
+Link al repositorio: https://github.com/20970594/FGC-Fighting_Game_Coach/tree/new_develop
 
 Link al video en Youtube: 
 
