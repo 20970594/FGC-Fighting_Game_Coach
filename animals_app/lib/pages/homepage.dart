@@ -1,14 +1,8 @@
-import 'package:fgc_app/data/game_profile.dart';
-import 'package:fgc_app/data/user.dart';
 import 'package:fgc_app/globals.dart';
 import 'package:flutter/material.dart';
 
-import 'routine_page.dart';
-
-User eseSoyYo = User('name', 'password', 'email');
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +17,13 @@ class MyHome extends StatelessWidget{
   String name='';
   String password='';
 
+  MyHome({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.grey[850],
+        backgroundColor: Colors.grey[200],
         body: Center(
           child: Column(
             children: <Widget>[
@@ -47,9 +43,9 @@ class MyHome extends StatelessWidget{
                 width: 150,
                 height: 50,
                 child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  onSubmitted: (value) => eseSoyYo.setName(value),
-                  decoration: InputDecoration(
+                  style: const TextStyle(color: Colors.white),
+                  //onSubmitted: (value) => eseSoyYo.setName(value),
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Usuario',
                     hintStyle: TextStyle(color: Colors.grey),
@@ -63,9 +59,9 @@ class MyHome extends StatelessWidget{
                 width: 150,
                 height: 50,
                 child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  onSubmitted: (value) => eseSoyYo.setPassword(value),
-                  decoration: InputDecoration(
+                  style: const TextStyle(color: Colors.white),
+                  //onSubmitted: (value) => eseSoyYo.setPassword(value),
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Contraseña',
                     hintStyle: TextStyle(color: Colors.grey)
@@ -82,7 +78,7 @@ class MyHome extends StatelessWidget{
                   onPressed: (){
                     /*eseSoyYo.setName(name);
                     eseSoyYo.setPassword(password);*/
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>RoutinePage()));
+                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>const RoutinePage()));
                   },
                   child: const Text('Iniciar Sesion',style: TextStyle(fontSize: 16),),
                 ),

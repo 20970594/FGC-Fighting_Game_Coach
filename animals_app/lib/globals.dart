@@ -1,4 +1,3 @@
-import 'package:fgc_app/data/user.dart';
 
 int gameSelected = 1;
 int menuSelected = 1;
